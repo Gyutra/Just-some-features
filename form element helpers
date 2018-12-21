@@ -1,0 +1,114 @@
+1.2. Хелперы для генерации элементов формы
+Rails предоставляет ряд хелперов для генерации элементов формы, 
+таких как чекбоксы, текстовые поля, радиокнопки и так далее. 
+Эти простые хелперы с именами, оканчивающимися на _tag 
+(такие как text_field_tag и check_box_tag), генерируют только один элемент <input>. 
+Первый параметр у них это всегда имя поля ввода. Когда форма будет отправлена, 
+имя будет передано вместе с данными формы, и, в свою очередь, помещено в params в 
+контроллере со значением, введенным пользователем для этого поля. Например, если 
+форма содержит <%= text_field_tag(:query) %>, то значение этого поля можно получить 
+в контроллере с помощью params[:query].
+
+При именовании полей ввода Rails использует определенные соглашения, 
+делающие возможным отправлять параметры с нескалярными величинами, 
+такими как массивы и хэши, которые также будут доступны в params. 
+Подробнее об этом можно прочесть в разделе разделе про именование параметров. 
+Для подробностей по точному использованию этих хелперов, обратитесь к документации по API.
+
+1.2.1. Чекбоксы
+Чекбоксы - это элементы управления формой, которые дают пользователю ряд опций, 
+которые он может включить или выключить:
+
+<%= check_box_tag(:pet_dog) %>
+<%= label_tag(:pet_dog, "I own a dog") %>
+<%= check_box_tag(:pet_cat) %>
+<%= label_tag(:pet_cat, "I own a cat") %>
+
+Это сгенерирует следующее:
+
+<input id="pet_dog" name="pet_dog" type="checkbox" value="1" />
+<label for="pet_dog">I own a dog</label>
+<input id="pet_cat" name="pet_cat" type="checkbox" value="1" />
+<label for="pet_cat">I own a cat</label>
+
+Первый параметр у check_box_tag - это, разумеется, имя поля ввода. 
+Второй параметр - это, естественно, значение поля ввода. 
+Это значение будет включено в данные формы (и будет присутствовать в params), когда чекбокс нажат.
+
+1.2.2. Радиокнопки
+Радиокнопки, чем-то похожие на чекбоксы, являются элементами управления, 
+которые определяют набор взаимоисключающих опций (т.е. пользователь может выбрать только одну):
+
+<%= radio_button_tag(:age, "child") %>
+<%= label_tag(:age_child, "I am younger than 21") %>
+<%= radio_button_tag(:age, "adult") %>
+<%= label_tag(:age_adult, "I am over 21") %>
+
+Результат:
+
+<input id="age_child" name="age" type="radio" value="child" />
+<label for="age_child">I am younger than 21</label>
+<input id="age_adult" name="age" type="radio" value="adult" />
+<label for="age_adult">I am over 21</label>
+
+Как и у check_box_tag, второй параметр для radio_button_tag - это значение поля ввода. 
+Так как эти две радиокнопки имеют одинаковое имя (age), пользователь может выбрать одну, 
+и params[:age] будет содержать или "child", или "adult".
+
+Всегда используйте метки (labels) для чекбоксов и радиокнопок. 
+Они связывают текст с определенной опцией и, предоставляя большее пространство для клика, 
+упрощают выбор пользователем нужного пункта радиокнопки.
+
+1.3. Другие интересные хелперы
+Среди других элементов управления формой стоит упомянуть текстовые области и следующие 
+поля: паролей, скрытые, поиска, ввода телефона, даты, времени, цвета, локальных даты-времени, 
+месяца, недели, url, email, числовые и интервалов:
+
+<%= text_area_tag(:message, "Hi, nice site", size: "24x6") %>
+<%= password_field_tag(:password) %>
+<%= hidden_field_tag(:parent_id, "5") %>
+<%= search_field(:user, :name) %>
+<%= telephone_field(:user, :phone) %>
+<%= date_field(:user, :born_on) %>
+<%= datetime_local_field(:user, :graduation_day) %>
+<%= month_field(:user, :birthday_month) %>
+<%= week_field(:user, :birthday_week) %>
+<%= url_field(:user, :homepage) %>
+<%= email_field(:user, :address) %>
+<%= color_field(:user, :favorite_color) %>
+<%= time_field(:task, :started_at) %>
+<%= number_field(:product, :price, in: 1.0..20.0, step: 0.5) %>
+<%= range_field(:product, :discount, in: 1..100) %>
+
+Результат:
+
+<textarea id="message" name="message" cols="24" rows="6">Hi, nice site</textarea>
+<input id="password" name="password" type="password" />
+<input id="parent_id" name="parent_id" type="hidden" value="5" />
+<input id="user_name" name="user[name]" type="search" />
+<input id="user_phone" name="user[phone]" type="tel" />
+<input id="user_born_on" name="user[born_on]" type="date" />
+<input id="user_graduation_day" name="user[graduation_day]" type="datetime-local" />
+<input id="user_birthday_month" name="user[birthday_month]" type="month" />
+<input id="user_birthday_week" name="user[birthday_week]" type="week" />
+<input id="user_homepage" name="user[homepage]" type="url" />
+<input id="user_address" name="user[address]" type="email" />
+<input id="user_favorite_color" name="user[favorite_color]" type="color" value="#000000" />
+<input id="task_started_at" name="task[started_at]" type="time" />
+<input id="product_price" max="20.0" min="1.0" name="product[price]" step="0.5" type="number" />
+<input id="product_discount" max="100" min="1" name="product[discount]" type="range" />
+
+Скрытые поля не отображаются пользователю, вместо этого они содержат данные, 
+как и любое текстовое поле. Их значения могут быть изменены с помощью JavaScript.
+
+Поля поиска, ввода телефона, даты, времени, цвета, даты-времени, локальных даты-времени, 
+месяца, недели, url, email, числовые и интервалов - это элементы управления HTML5. 
+Если необходимо, чтобы у вашего приложения была совместимость со старыми браузерами, 
+вам необходим HTML5 polyfill (предоставляемый с помощью CSS и/или JavaScript). 
+Хотя в таких решениях нет недостатка, популярным инструментом на сегодняшний момент является Modernizr, 
+предоставляющий простой способ добавить функциональность, 
+основанной на обнаружении установленных особенностей HTML5.
+
+Если используются поля для ввода пароля (для любых целей), 
+вы можете настроить свое приложение для предотвращения появления их значений в логах приложения. 
+Это можно изучить в руководстве Безопасность приложений на Rails.
