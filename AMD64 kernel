@@ -1,0 +1,51 @@
+ProblemType: Bug
+ApportVersion: 2.20.10-0ubuntu13
+Architecture: amd64
+AudioDevicesInUse:
+ USER PID ACCESS COMMAND
+ /dev/snd/controlC0: typer 2994 F.... pulseaudio
+ /dev/snd/pcmC0D0p: typer 2994 F...m pulseaudio
+CurrentDesktop: LXQt
+DistroRelease: Ubuntu 18.10
+InstallationDate: Installed on 2018-12-20 (2 days ago)
+InstallationMedia: Lubuntu 18.10 "Cosmic Cuttlefish" - Release amd64 (20181017.2)
+Lsusb:
+ Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+ Bus 001 Device 003: ID 1c4f:0002 SiGma Micro Keyboard TRACER Gamma Ivory
+ Bus 001 Device 002: ID 046d:c083 Logitech, Inc.
+ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+MachineType: Gigabyte Technology Co., Ltd. B360M-D3H
+Package: linux (not installed)
+ProcFB: 0 inteldrmfb
+ProcKernelCmdLine: BOOT_IMAGE=/vmlinuz-4.18.0-12-generic root=UUID=ba2e86e4-48ce-47f3-a413-98536fe6febd ro quiet splash resume=UUID=5b571422-2d63-4044-88be-ecd5e66732d8 vt.handoff=1
+ProcVersionSignature: Ubuntu 4.18.0-12.13-generic 4.18.17
+RelatedPackageVersions:
+ linux-restricted-modules-4.18.0-12-generic N/A
+ linux-backports-modules-4.18.0-12-generic N/A
+ linux-firmware 1.175.1
+RfKill:
+
+Tags: cosmic
+Uname: Linux 4.18.0-12-generic x86_64
+UpgradeStatus: No upgrade log present (probably fresh install)
+UserGroups: adm cdrom dip lpadmin plugdev sudo
+_MarkForUpload: True
+dmi.bios.date: 04/19/2018
+dmi.bios.vendor: American Megatrends Inc.
+dmi.bios.version: F4
+dmi.board.asset.tag: Default string
+dmi.board.name: B360M D3H-CF
+dmi.board.vendor: Gigabyte Technology Co., Ltd.
+dmi.board.version: x.x
+dmi.chassis.asset.tag: Default string
+dmi.chassis.type: 3
+dmi.chassis.vendor: Default string
+dmi.chassis.version: Default string
+dmi.modalias: dmi:bvnAmericanMegatrendsInc.:bvrF4:bd04/19/2018:svnGigabyteTechnologyCo.,Ltd.:pnB360M-D3H:pvrDefaultstring:rvnGigabyteTechnologyCo.,Ltd.:rnB360MD3H-CF:rvrx.x:cvnDefaultstring:ct3:cvrDefaultstring:
+dmi.product.family: Default string
+dmi.product.name: B360M-D3H
+dmi.product.sku: Default string
+dmi.product.version: Default string
+dmi.sys.vendor: Gigabyte Technology Co., Ltd.
+
+tags:	added: apport-collected
